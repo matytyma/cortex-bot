@@ -41,6 +41,7 @@ public class GivePointsCommand extends SlashCommand {
 
         if (!event.getMember().isOwner() || !event.getMember().getRoles().contains(event.getJDA().getRoleById(discordConfiguration.getStaffRole()))) {
             event.getHook().sendMessage("You must be staff to execute this command.").setEphemeral(true).queue();
+            return;
         }
 
         List<OptionMapping> options = event.getOptions();
@@ -68,6 +69,7 @@ public class GivePointsCommand extends SlashCommand {
 
         if (cortexMember == null) {
             event.getHook().sendMessage("The user provided does not exist in our database.").setEphemeral(true).queue();
+            return;
         }
 
         int points = (int) event.getOption("amount").getAsDouble();
